@@ -1,0 +1,48 @@
+
+.container{
+    
+    display: flex;
+    border: 1px solid green;
+    justify-content: space-between; /* Espaça as tabelas igualmente */
+    background-color: rgba(226, 223, 223, 0.815);
+   
+
+    
+    
+}
+
+.tabela {
+    display: inline-block; /* Permite que as tabelas fiquem lado a lado */
+    margin: 0px; /* Espaçamento entre as tabelas */
+    border: 1px solid #000; /* Borda externa da tabela */
+    border-collapse: collapse; /* Colapsa as bordas internas */
+    width: 100%;
+    
+
+}
+th, td {
+    border: 1px solid #000;
+    padding: 8px;
+    text-align: center;
+    width: 70%;
+}
+th {
+    background-color: black;
+    color: white;
+    
+}
+
+h3{
+    text-align: center;
+    background-color: #674e9e;
+    color: white;
+}
+h1 {
+    text-align: center;
+}
+
+.lado-banco, .lado-software {
+    width: 50%;
+
+}
+

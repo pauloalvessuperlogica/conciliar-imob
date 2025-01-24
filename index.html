@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br
+">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conciliar-Imob</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Conciliação</h1>
+    
+    <div class="container" id="container">
+        <div class="lado-banco">
+            <h3>Lado do banco</h3>
+        <table class="tabela" id="tabela-banco">
+
+        </table> 
+        </div>
+        <div class="lado-software">
+            <h3>Lado software</h3>
+            <table class="tabela" id="tabela-software">
+            </table>    
+        </div>              
+    </div>
+    <input type="file" id="fileInput">
+    <button onclick="converterArquivo()">Processar informações</button>
+    <div id="resultado"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
