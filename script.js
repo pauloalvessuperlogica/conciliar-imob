@@ -58,7 +58,7 @@ function exibeTabelas (objeto){
         if (dado.data_banco) {
             resultadoBanco += `
             <tr>
-                <td>${dado.data_banco}</td>
+                <td class="td-data">${dado.data_banco}</td>
                 <td>${dado.descricao_banco}</td>
                 <td>${dado.valor_banco}</td>
                 <td><input type="checkbox" name="conciliar" value="" onchange="toggleRow(this)"></td>
@@ -70,7 +70,7 @@ function exibeTabelas (objeto){
         if (dado.data_software){
             resultadoSoftware += `
             <tr>
-                <td>${dado.data_software}</td>
+                <td class="td-data" >${dado.data_software}</td>
                 <td>${dado.descricao_software}</td>
                 <td>${dado.valor_software}</td>
                 <td><input type="checkbox" name="conciliar" value="" onchange="toggleRow(this)"></td>
@@ -84,7 +84,7 @@ function exibeTabelas (objeto){
     tabelaIndices = `
             <thead>
                 <tr class="nomes-colunas">
-                    <th>Data</th>
+                    <th class= "td-data">Data</th>
                     <th>Descrição</th>
                     <th>Valor</th>
                     <th></th>

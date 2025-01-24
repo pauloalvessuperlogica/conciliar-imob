@@ -2,7 +2,7 @@
 .container{
     
     display: flex;
-    border: 1px solid green;
+    border: 1px solid black;
     justify-content: space-between; /* Espaça as tabelas igualmente */
     background-color: rgba(226, 223, 223, 0.815);
    
@@ -20,11 +20,17 @@
     
 
 }
+
+.td-data {
+    width: 10px;  
+    padding: 20px;   
+  }
+
 th, td {
     border: 1px solid #000;
     padding: 8px;
     text-align: center;
-    width: 70%;
+    width: 60%;
 }
 th {
     background-color: black;
@@ -43,6 +49,5 @@ h1 {
 
 .lado-banco, .lado-software {
     width: 50%;
-
 }
 
