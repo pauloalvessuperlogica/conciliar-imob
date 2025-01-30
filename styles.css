@@ -5,10 +5,7 @@
     border: 1px solid black;
     justify-content: space-between; /* Espaça as tabelas igualmente */
     background-color: rgba(226, 223, 223, 0.815);
-   
 
-    
-    
 }
 
 .tabela {
@@ -17,8 +14,6 @@
     border: 1px solid #000; /* Borda externa da tabela */
     border-collapse: collapse; /* Colapsa as bordas internas */
     width: 100%;
-    
-
 }
 
 .td-data {

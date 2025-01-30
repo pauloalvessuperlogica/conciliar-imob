@@ -12,7 +12,11 @@ function converterArquivo() {
                 const objeto = JSON.parse(fileContent);
                 //document.getElementById('resultado').textContent = JSON.stringify(objeto, null, 2);
                 exibeTabelas(objeto)
-
+                let divResultado = document.getElementById('resultado');
+                botaoConciliar = `
+                    <button onclick="verificarDuplicados()">Procurar valores iguais</button>
+                `;
+                divResultado.innerHTML = botaoConciliar;
             } catch (error) {
                 console.error('Erro ao analisar o JSON:', error);
                 document.getElementById('resultado').textContent = 'O arquivo não é um JSON válido.';
@@ -29,6 +33,8 @@ function toggleRow(checkbox) {
     if (checkbox.checked) {
         row.style.backgroundColor = '#b494f8'; // Cor de fundo cinza claro
         row.style.textDecoration = 'line-through'; 
+        let valor = row.querySelector(".td-valor-banco");      
+        
     } else {
         row.style.backgroundColor = ''; 
         row.style.textDecoration = 'none'; 
@@ -36,11 +42,10 @@ function toggleRow(checkbox) {
 }
 
 
-
 function exibeTabelas (objeto){
     let sectionBanco = document.getElementById("tabela-banco");
     let sectionSoftware = document.getElementById("tabela-software");
-
+    
 
     let resultadoBanco = "";
     let resultadoSoftware = "";
@@ -60,7 +65,7 @@ function exibeTabelas (objeto){
             <tr>
                 <td class="td-data">${dado.data_banco}</td>
                 <td>${dado.descricao_banco}</td>
-                <td>${dado.valor_banco}</td>
+                <td class="td-valor-banco">${dado.valor_banco}</td>
                 <td><input type="checkbox" name="conciliar" value="" onchange="toggleRow(this)"></td>
             </tr>
         `;
@@ -72,7 +77,7 @@ function exibeTabelas (objeto){
             <tr>
                 <td class="td-data" >${dado.data_software}</td>
                 <td>${dado.descricao_software}</td>
-                <td>${dado.valor_software}</td>
+                <td class="td-valor-software">${dado.valor_software}</td>
                 <td><input type="checkbox" name="conciliar" value="" onchange="toggleRow(this)"></td>
             </tr>
         `;
@@ -107,3 +112,40 @@ function exibeTabelas (objeto){
 }
 
 
+function verificarDuplicados(){
+    console.log('verificarDuplicados');
+    let resultadosBanco = document.getElementById("tabela-banco");
+    let resultadosSoftware = document.getElementById("tabela-software");
+
+    //console.log(resultadosBanco);
+    //console.log(resultadosBanco.getElementsByTagName("tr"))
+    const linhasBanco = resultadosBanco.querySelectorAll('td.td-valor-banco');
+    const linhasSoftware = resultadosSoftware.querySelectorAll('td.td-valor-software');
+   
+    //console.log('linhasSoftwareArray: ' +linhasSoftwareArray)
+
+    linhasBanco.forEach(element => {
+        valorBanco = parseFloat(element.textContent);
+        //console.log(valorBanco);
+        
+        linhasSoftware.forEach( elemento =>{
+            valorSoftware = parseFloat(elemento.textContent);
+            //console.log(valorSoftware);
+
+            if (valorBanco === valorSoftware) {
+                console.log(`Valor ${valorBanco} existe também no lado do software.`)
+
+                const linha = elemento.closest('tr');
+                // Aplicar um estilo para destacar a linha (ajuste conforme necessário)
+                linha.style.backgroundColor = 'green';
+                
+                const linhab = element.closest('tr');
+                // Aplicar um estilo para destacar a linha (ajuste conforme necessário)
+                linhab.style.backgroundColor = 'green';
+
+            }
+        });
+    });
+    
+
+}
