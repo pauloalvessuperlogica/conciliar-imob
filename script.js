@@ -31,16 +31,55 @@ function converterArquivo() {
 function toggleRow(checkbox) {
     var row = checkbox.closest('tr');
     if (checkbox.checked) {
+        if (checkbox.name == "conciliar-banco") {
+            somaSelecionados = document.getElementById("soma-selecionados-banco");
+            valor = row.querySelector(".td-valor-banco");
+        } else {
+            somaSelecionados = document.getElementById("soma-selecionados-software");
+            valor = row.querySelector(".td-valor-software");
+        }
         row.style.backgroundColor = '#b494f8'; // Cor de fundo cinza claro
         row.style.textDecoration = 'line-through'; 
-        let valor = row.querySelector(".td-valor-banco");      
+
+        if (somaSelecionados.textContent == "-") {
+            acumulado = 0;
+        } else {
+            acumulado = parseFloat(somaSelecionados.textContent);
+        }
         
+        valorSelecionado = parseFloat(valor.textContent)
+        soma = acumulado + valorSelecionado
+        
+        somaSelecionados.innerText = soma.toFixed(2) 
     } else {
+        if (checkbox.name == "conciliar-banco") {
+            somaSelecionados = document.getElementById("soma-selecionados-banco")
+            valor = row.querySelector(".td-valor-banco");
+        } else {
+            somaSelecionados = document.getElementById("soma-selecionados-software")
+            valor = row.querySelector(".td-valor-software");
+        }
+
         row.style.backgroundColor = ''; 
-        row.style.textDecoration = 'none'; 
+        row.style.textDecoration = 'none';
+
+        if (somaSelecionados.textContent == "-") {
+            acumulado = 0;
+        } else {
+            acumulado = parseFloat(somaSelecionados.textContent);
+        }
+        valorSelecionado = parseFloat(valor.textContent)
+        subtracao = acumulado - valorSelecionado
+        
+        if (subtracao === 0.00) {
+            somaSelecionados.innerText = "-"    
+        } else {
+            somaSelecionados.innerText = subtracao.toFixed(2)   
+        }
+        
+        
     }
 }
-
 
 function exibeTabelas (objeto){
     let sectionBanco = document.getElementById("tabela-banco");
@@ -66,7 +105,7 @@ function exibeTabelas (objeto){
                 <td class="td-data">${dado.data_banco}</td>
                 <td>${dado.descricao_banco}</td>
                 <td class="td-valor-banco">${dado.valor_banco}</td>
-                <td><input type="checkbox" name="conciliar" value="" onchange="toggleRow(this)"></td>
+                <td><input type="checkbox" name="conciliar-banco" value="" onchange="toggleRow(this)"></td>
             </tr>
         `;
         }
@@ -78,7 +117,7 @@ function exibeTabelas (objeto){
                 <td class="td-data" >${dado.data_software}</td>
                 <td>${dado.descricao_software}</td>
                 <td class="td-valor-software">${dado.valor_software}</td>
-                <td><input type="checkbox" name="conciliar" value="" onchange="toggleRow(this)"></td>
+                <td><input type="checkbox" name="conciliar-software" value="" onchange="toggleRow(this)"></td>
             </tr>
         `;
     
@@ -110,7 +149,6 @@ function exibeTabelas (objeto){
     sectionBanco.innerHTML = tabelaBanco;
     sectionSoftware.innerHTML = tabelaSoftware;
 }
-
 
 function verificarDuplicados(){
     console.log('verificarDuplicados');
