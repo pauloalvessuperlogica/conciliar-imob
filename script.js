@@ -2,6 +2,11 @@
 function converterArquivo() {
     const fileInput = document.getElementById('fileInput');
     const file = fileInput.files[0];
+    let somaSelecionadosBanco = document.getElementById("soma-selecionados-banco");
+    let somaSelecionadosSoftware = document.getElementById("soma-selecionados-software");
+
+    somaSelecionadosBanco.innerText = "-" 
+    somaSelecionadosSoftware.innerText = "-" 
 
     if (file) {
         const reader = new FileReader();
@@ -76,8 +81,6 @@ function toggleRow(checkbox) {
         } else {
             somaSelecionados.innerText = subtracao.toFixed(2)   
         }
-        
-        
     }
 }
 
@@ -85,13 +88,11 @@ function exibeTabelas (objeto){
     let sectionBanco = document.getElementById("tabela-banco");
     let sectionSoftware = document.getElementById("tabela-software");
     
-
     let resultadoBanco = "";
     let resultadoSoftware = "";
 
     objeto = objeto.data.itens
     
-
     if (objeto == 0){
         alert("arquivo sem informações");
       }
@@ -110,7 +111,6 @@ function exibeTabelas (objeto){
         `;
         }
         
-
         if (dado.data_software){
             resultadoSoftware += `
             <tr>
@@ -120,9 +120,7 @@ function exibeTabelas (objeto){
                 <td><input type="checkbox" name="conciliar-software" value="" onchange="toggleRow(this)"></td>
             </tr>
         `;
-    
         }
-        
     }
 
     tabelaIndices = `
@@ -138,7 +136,6 @@ function exibeTabelas (objeto){
 
     let tabelaBanco = tabelaIndices + resultadoBanco        
     let tabelaSoftware = tabelaIndices + resultadoSoftware
-
 
     //console.log('tabela banco ' +tabelaBanco) ;
     //console.log('tabela sof ' +tabelaSoftware) ;
@@ -180,10 +177,7 @@ function verificarDuplicados(){
                 const linhab = element.closest('tr');
                 // Aplicar um estilo para destacar a linha (ajuste conforme necessário)
                 linhab.style.backgroundColor = 'green';
-
             }
         });
     });
-    
-
 }
